@@ -8,7 +8,10 @@ To use simply open up the .py file and edit the settings (e.g. filename, individ
 
 ## Notes about exectuable.py
 
-No python understanding should be required.
+No python understanding should be required. To use, put executable.py in the same folder as the data and run:
+
+```cd /where/data/is/stored/'''
+```python3 executable.py'''
 
 When you run it, it automatically checks if the required packages are installed, if not, they are installed and imported.
 
