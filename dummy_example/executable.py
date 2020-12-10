@@ -18,7 +18,6 @@
 
 (4) CPSD is calculated as    1/num_couples * sum_i (abs(cpsd_i))  for couple 'i'.
     i.e. the average of the absolute cpsds
-
 '''
 
 print('############ SETTING GLOBAL PARAMETERS ##############')
@@ -99,7 +98,6 @@ def convert_value_to_NaN(x, value):
     indices = np.where(x==value)
     x[indices] = np.nan
     return x
-
 
 
 print('######## LOADING DATA ##########')
@@ -190,7 +188,7 @@ if analysis_type == 'dyadic':
 
         counts = calculate_significance(Pxy_mean, cpsd_mean_rands, f)
         counts_df = pd.DataFrame()
-        counts_df['p_vales'] = counts
+        counts_df['p_vales'] = 1 - counts
         counts_df['f (cpm)'] = f
         counts_df.to_csv('dyadic_p_values.csv', index=False)
 
