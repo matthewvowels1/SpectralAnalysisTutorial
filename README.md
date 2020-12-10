@@ -3,7 +3,20 @@ A tutorial on spectral analysis for psychologists and social scientists.
 
 In 'dummy_example/' there is  executable.py which makes running a spectral analysis easy.
 
-To use simply open up the .py file and edit the settings (e.g. filename, individual/dyadic analysis etc.) and run.
+To use simply open up the .py file and edit the settings (e.g. filename, individual/dyadic analysis etc.) and run (more insructions/info below).
+
+This script undertakes a number of analyses, following those used in:
+
+Vowels, Mark, Vowels, Wood (2018)
+
+Using spectral and cross-spectral analysis to identify patterns and synchrony in couples’ sexual desire. PloS One 13 (10).
+
+and those elaborated upon in:
+
+Vowels, Vowels, Wood (under review) Spectral and Cross-Spectral Analysis-a Tutorial for Psychologists and Social Scientists. PsyArXiv https://psyarxiv.com/mj75a/
+
+Please cite these works if you use this script : ]
+
 
 
 ## Notes about exectuable.py
