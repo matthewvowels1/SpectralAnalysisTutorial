@@ -22,8 +22,8 @@
 
 print('############ SETTING GLOBAL PARAMETERS ##############')
 
-filename = './DummyCouplesDailyDiaryRomanticSet_12.4.20.csv'
-analysis_type = 'dyadic'  # 'dyadic' or 'ind'
+filename = './DummyIndividualDailyDiaryFamilySet_12.4.20.csv'
+analysis_type = 'ind'  # 'dyadic' or 'ind'
 significance_test = True  # turns on or off bootstrapped significance testing
 num_bootstraps = 10000  # number of bootstraps to run when deriving p-value estimates
 T = 30  # number of timepoints for ALL participants
@@ -216,6 +216,10 @@ elif analysis_type == 'ind':
     fft_pAs = np.fft.fft(pAs, axis=0)
     fft_pAs = 2 * np.abs(fft_pAs[0:int(T / 2) + 1] / T)
     fft_pAs_mean = fft_pAs.mean(1)
+
+    fft_df_all = pd.DataFrame(fft_pAs)
+    fft_df_all['f (cpm)'] = f
+    fft_df_all.to_csv('./individual_fft_all.csv', index=False)
 
     fft_df = pd.DataFrame()
     fft_df['amplitudes'] = fft_pAs_mean
