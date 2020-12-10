@@ -7,7 +7,7 @@ To use simply open up the .py file and edit the settings (e.g. filename, individ
 
 This script undertakes a number of analyses, following those used in:
 
-**Vowels, Mark, Vowels, Wood (2018) Using spectral and cross-spectral analysis to identify patterns and synchrony in couples’ sexual desire. PloS One 13 (10).**
+**Vowels, Mark, Vowels, Wood (2018) Using spectral and cross-spectral analysis to identify patterns and synchrony in couples’ sexual desire. PloS One 13 (10). https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0205330**
 
 and those elaborated upon in:
 
