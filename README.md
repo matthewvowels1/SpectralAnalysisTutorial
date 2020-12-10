@@ -8,10 +8,11 @@ To use simply open up the .py file and edit the settings (e.g. filename, individ
 
 ## Notes about exectuable.py
 
-No python understanding should be required. To use, put executable.py in the same folder as the data and run:
+No python understanding should be required beyond that needed to install and run it. To run the analysis, put executable.py in the same folder as the data and run:
 
-```cd /where/data/is/stored/```
-```python3 executable.py```
+(Linux/bash) cd to the working directory: ```cd /where/data/is/stored/```
+
+(Linux/bash) run script by calling python3 ```python3 executable.py```
 
 When you run it, it automatically checks if the required packages are installed, if not, they are installed and imported.
 
