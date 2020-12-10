@@ -1,6 +1,8 @@
 # SpectralAnalysisTutorial
 A tutorial on spectral analysis for psychologists and social scientists.
 
+
+# executable.py
 There is  executable.py which makes running a spectral analysis easy. To use it, simply open up the .py file and edit the settings (e.g. filename, individual/dyadic analysis etc.) and run (more insructions/info below).
 
 This script undertakes a number of analyses, following those used in:
