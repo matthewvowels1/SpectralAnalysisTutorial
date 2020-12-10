@@ -1,4 +1,21 @@
 '''
+This script undertakes a number of analyses, following those used in:
+
+Vowels, Mark, Vowels, Wood (2018)
+Using spectral and cross-spectral analysis to identify patterns and synchrony in couples’ sexual desire
+PloS One 13 (10).
+
+and those elaborated upon in:
+
+Vowels, Vowels, Wood (2020)
+Spectral and Cross-Spectral Analysis-a Tutorial for Psychologists and Social Scientists
+PsyArXiv https://psyarxiv.com/mj75a/
+
+Please cite these works if you use this script : ]
+
+
+Assumptions and Notes:
+
 (1) Assumes dyadic data are in the following format:
     row 1: [pA1 t=0, .... pA1 t=30, pB1 t=0 ... pB1 t=30]
     row 2: [pA2 t=0, .... pA2 t=30, pB2 t=0 ... pB2 t=30]
@@ -16,7 +33,7 @@
 (3) Assumes the sampling rate is *T per month*
     (e.g. T=30 times in a month for 3 days of daily diary data)
 
-(4) CPSD is calculated as    1/num_couples * sum_i (abs(cpsd_i))  for couple 'i'.
+(4) Average CPSD is calculated as    1/num_couples * sum_i (abs(cpsd_i))  for couple 'i'.
     i.e. the average of the absolute cpsds
 '''
 
@@ -41,13 +58,11 @@ import subprocess
 import sys
 import pip
 
-
 def install(package):
 	if hasattr(pip, 'main'):
 		pip.main(['install', package])
 	else:
 		pip._internal.main(['install', package])
-
 
 install('numpy')
 install('matplotlib')
