@@ -160,7 +160,6 @@ if analysis_type == 'dyadic':
 
     cpsd_phase = np.angle(Pxy)
 
-    print(cpsd_phase.shape)
     # unwrap phase:
     for i in range(cpsd_phase.shape[0]):
         for j in range(cpsd_phase.shape[1]):
