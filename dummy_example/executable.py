@@ -23,8 +23,8 @@
 
 print('############ SETTING GLOBAL PARAMETERS ##############')
 
-filename = './DummyIndividualDailyDiaryFamilySet_12.4.20.csv'
-analysis_type = 'ind'  # 'dyadic' or 'ind'
+filename = './DummyCouplesDailyDiaryRomanticSet_12.4.20.csv'
+analysis_type = 'dyadic'  # 'dyadic' or 'ind'
 significance_test = True  # turns on or off bootstrapped significance testing
 num_bootstraps = 10000  # number of bootstraps to run when deriving p-value estimates
 T = 30  # number of timepoints for ALL participants
@@ -160,8 +160,9 @@ if analysis_type == 'dyadic':
 
     cpsd_phase = np.angle(Pxy)
 
+    print(cpsd_phase.shape)
     # unwrap phase:
-    for i in range(cpsd_phase.shape[1]):
+    for i in range(cpsd_phase.shape[0]):
         for j in range(cpsd_phase.shape[1]):
             if cpsd_phase[i, j] <= 0:
                 cpsd_phase[i, j] += 2 * np.pi
@@ -238,6 +239,6 @@ elif analysis_type == 'ind':
 
         counts = calculate_significance(fft_pAs_mean, fft_mean_rands, f)
         counts_df = pd.DataFrame()
-        counts_df['p_vales'] = counts
+        counts_df['p_vales'] = 1 - counts
         counts_df['f (cpm)'] = f
         counts_df.to_csv('individual_p_values.csv', index=False)
