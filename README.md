@@ -12,7 +12,7 @@ No python understanding should be required beyond that needed to install and run
 
 (Linux/bash) cd to the working directory: ```cd /where/data/is/stored/```
 
-(Linux/bash) run script by calling python3 ```python3 executable.py```
+(Linux/bash) run script by calling python3: ```python3 executable.py```
 
 When you run it, it automatically checks if the required packages are installed, if not, they are installed and imported.
 
