@@ -17,12 +17,14 @@ Please cite these works if you use this script : ]
 Assumptions and Notes:
 
 (1) Assumes dyadic data are in the following format:
+    HEADER
     row 1: [pA1 t=0, .... pA1 t=30, pB1 t=0 ... pB1 t=30]
     row 2: [pA2 t=0, .... pA2 t=30, pB2 t=0 ... pB2 t=30]
     ...
     i.e. matrix shape is (num_participants, 2*T)
 
     and that non-dyadic data are in the following format:
+    HEADER
     row 1: [ind1 t=0, .... ind1 t=30]
     row 2: [ind2 t=0, .... ind2 t=30]
     ...
@@ -39,10 +41,10 @@ Assumptions and Notes:
 
 print('############ SETTING GLOBAL PARAMETERS ##############')
 
-filename = './test.csv'
-analysis_type = 'ind'  # 'dyadic' or 'ind'
+filename = './testdyadic.csv'
+analysis_type = 'dyadic'  # 'dyadic' or 'ind'
 significance_test = True  # turns on or off bootstrapped significance testing
-num_bootstraps = 10000  # number of bootstraps to run when deriving p-value estimates
+num_bootstraps = 1000  # number of bootstraps to run when deriving p-value estimates
 T = 30  # number of timepoints for ALL participants
 Fs = 30  # number of samples in a MONTH (cycles per month cpm are the assumed frequency units)
 windowing = True  # whether or not to do time windowing (Hanning)
@@ -127,7 +129,6 @@ elif analysis_type == 'ind':
 num_participants = data.shape[0]  # if data are dyadic, this is equal to the number of couples
 # convert data to numpy arrays
 data = np.asarray(data.values)
-print(data)
 
 time_index = np.linspace(0, 1 - (1 / T), T)
 f = Fs * np.linspace(0, int(T / 2), int(T / 2 + 1)) / T
@@ -165,11 +166,12 @@ if analysis_type == 'dyadic':
         pBs = pBs * window * acf
 
     f1, Pxy = signal.csd(pAs, pBs, nperseg=T, axis=0)
+
     Pxy_mean = np.mean(np.abs(Pxy), axis=1)
     cpsd_mean = pd.DataFrame()
     cpsd_mean['cpsd'] = Pxy_mean
     cpsd_mean['f (cpm)'] = f
-    cpsd_mean.to_csv('./cpsd.csv', index=False)
+    cpsd_mean.to_csv('./average_cpsd.csv', index=False)
 
     cpsd_phase = np.angle(Pxy)
 
@@ -196,9 +198,10 @@ if analysis_type == 'dyadic':
         for i in range(num_bootstraps):
             if i % 100 == 0:
                 print('Running bootstrap number {} out of '.format(i), num_bootstraps)
+
             pAs_rand = np.random.permutation(pAs)
             pBs_rand = np.random.permutation(pBs)
-            f1, Pxy = signal.csd(pAs, pBs, nperseg=T, axis=0)
+            f1, Pxy = signal.csd(pAs_rand, pBs_rand, nperseg=T, axis=0)
             cpsd_mean_rands[i, :] = np.mean(np.abs(Pxy), axis=1)
 
         counts = calculate_significance(Pxy_mean, cpsd_mean_rands, f)
