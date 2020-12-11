@@ -39,7 +39,7 @@ Assumptions and Notes:
 
 print('############ SETTING GLOBAL PARAMETERS ##############')
 
-filename = './DummyIndividualDailyDiaryFamilySet_12.4.20.csv'
+filename = './test.csv'
 analysis_type = 'ind'  # 'dyadic' or 'ind'
 significance_test = True  # turns on or off bootstrapped significance testing
 num_bootstraps = 10000  # number of bootstraps to run when deriving p-value estimates
@@ -86,7 +86,7 @@ def calculate_significance(reference, bootstraps, f):
 			coeff = reference[j]
 			if coeff > to_compare:
 				counts[j] += 1
-	counts /= (n * 100)
+	counts /= n
 	return counts
 
 # define function that is useful for interpolating nan values
@@ -127,7 +127,7 @@ elif analysis_type == 'ind':
 num_participants = data.shape[0]  # if data are dyadic, this is equal to the number of couples
 # convert data to numpy arrays
 data = np.asarray(data.values)
-
+print(data)
 
 time_index = np.linspace(0, 1 - (1 / T), T)
 f = Fs * np.linspace(0, int(T / 2), int(T / 2 + 1)) / T
@@ -253,6 +253,7 @@ elif analysis_type == 'ind':
             fft_pAs_rand = 2 * np.abs(fft_pAs_rand[0:int(T / 2) + 1] / T)
             fft_mean_rands[i, :] = fft_pAs_rand.mean(1)
 
+        print(fft_mean_rands.shape, fft_pAs_mean.shape)
         counts = calculate_significance(fft_pAs_mean, fft_mean_rands, f)
         counts_df = pd.DataFrame()
         counts_df['p_vales'] = 1 - counts
